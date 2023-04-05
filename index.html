@@ -35,25 +35,49 @@
                                 <input type="text" id="first_name" name="first_name">
                                 <label for="email">EMAIL</label>
                                 <input type="email" id="email" name="email">
-                                <label for="password">PASSWORD</label>
-                                <input type="password" id="password" name="password">
+                                <label for="password1">PASSWORD</label>
+                                <input type="password" id="password1" name="password1" required>
+                                <span class="error">*Passwords do not match.</span>
                             </div>
                             <div>
                                 <label for="last_name">LAST NAME</label>
                                 <input type="text" id="last_name" name="last_name">
                                 <label for="phone">PHONE NUMBER</label>
                                 <input type="tel" id="phone" name="phone">
-                                <label for="confirm_pwd">CONFIRM PASSWORD</label>
-                                <input type="password" id="confirm_pwd" name="confirm_pwd">
+                                <label for="password2">CONFIRM PASSWORD</label>
+                                <input type="password" id="password2" name="password2" required>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div>
                     <button type="submit" form="signup">Create Account</button>
-                    <p>Already have an account? <a href="">Log in</a></p>
+                    <p>Already have an account? <a href="" class="login">Log in</a></p>
                 </div>          
         </div>
     </div>
+    <script>
+        const password1 = document.querySelector("#password1");
+        const password2 = document.querySelector("#password2");
+        const error = document.querySelector(".error");
+
+        function passwordCheck() {
+            
+            if(password1.value!= password2.value){
+                error.style.visibility = "visible";
+                password1.style.borderColor = "red";
+                password2.style.borderColor = "red";
+                password1.addEventListener("blur", passwordCheck);
+            }
+            else{
+                error.style.visibility = "hidden";
+                password1.style.borderColor = "green";
+                password2.style.borderColor = "green";
+            }
+        }
+
+        password2.addEventListener("blur", passwordCheck);
+            
+    </script>
 </body>
 </html>
